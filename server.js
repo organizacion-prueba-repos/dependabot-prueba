@@ -7,9 +7,9 @@ const db = new sqlite3.Database(":memory:");
 
 const userRouteLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
+    const query = "SELECT * FROM users WHERE username = ?";
 });
-
+    db.all(query, [username], (err, rows) => {
 app.get("/user", userRouteLimiter, (req, res) => {
     const username = req.query.username;
 
