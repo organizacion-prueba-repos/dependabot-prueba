@@ -1,4 +1,4 @@
-name: Demo Jobs Paralelos
+name: Demo Needs
 
 on: [push]
 
@@ -6,9 +6,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Construyendo proyecto..."
+      - run: echo "Build listo"
 
   test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Ejecutando pruebas..."
+      - run: echo "Tests ejecutados"
