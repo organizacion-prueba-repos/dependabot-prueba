@@ -1,0 +1,14 @@
+name: Demo Jobs Paralelos
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Construyendo proyecto..."
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Ejecutando pruebas..."
