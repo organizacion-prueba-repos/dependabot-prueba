@@ -1,20 +1,16 @@
-name: Demo Multiple Needs
+name: Demo Permissions
 
 on: [push]
 
+permissions:
+  contents: write
+  
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Build listo"
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - run: exit 1
-
   test:
-    needs: [build, lint]
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Tests ejecutados"
+      - run: |
+          git config --global user.name "demo"
+          git config --global user.email "demo@test.com"
+          git commit --allow-empty -m "test"
+          git push
