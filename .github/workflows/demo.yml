@@ -1,20 +1,12 @@
-name: Demo Combinado
+name: Demo Secrets
 
 on: [push]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Build listo"
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Lint ejecutado"
-
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Tests ejecutados"
+      - name: Usar secret
+        run: echo "Deploy ejecutado"
+        env:
+          TOKEN: ${{ secrets.DEMO_SECRET }}
