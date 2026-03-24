@@ -1,19 +1,20 @@
-name: Demo Outputs
+name: Demo Multiple Needs
 
 on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      mensaje: ${{ steps.set-output.outputs.mensaje }}
-
     steps:
-      - id: set-output
-        run: echo "mensaje=Hola desde build" >> $GITHUB_OUTPUT
+      - run: echo "Build listo"
 
-  test:
-    needs: build
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ needs.build.outputs.mensaje }}"
+      - run: echo "Lint OK"
+
+  test:
+    needs: [build, lint]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Tests ejecutados"
