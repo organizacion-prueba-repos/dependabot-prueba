@@ -1,4 +1,4 @@
-name: Demo Needs
+name: Demo Combinado
 
 on: [push]
 
@@ -7,6 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Build listo"
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Lint ejecutado"
 
   test:
     needs: build
