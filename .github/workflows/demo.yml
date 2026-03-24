@@ -1,18 +1,30 @@
-name: Demo Permissions
+name: Demo Completo
 
 on: [push]
 
+permissions:
+  contents: read
+
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
+    outputs:
+      version: ${{ steps.version.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - id: version
+        run: echo "version=1.0.${{ github.run_number }}" >> $GITHUB_OUTPUT
 
-      - run: |
-          git config --global user.name "demo"
-          git config --global user.email "demo@test.com"
-          git commit --allow-empty -m "test"
-          git push
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Testing version ${{ needs.build.outputs.version }}"
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy seguro
+        run: echo "Deploy con secret"
+        env:
+          TOKEN: ${{ secrets.DEMO_SECRET }}
