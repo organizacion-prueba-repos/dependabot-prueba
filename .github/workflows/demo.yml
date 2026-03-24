@@ -2,13 +2,15 @@ name: Demo Permissions
 
 on: [push]
 
-permissions:
-  contents: write
-  
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
+      - uses: actions/checkout@v4
+
       - run: |
           git config --global user.name "demo"
           git config --global user.email "demo@test.com"
