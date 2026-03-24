@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Usar secret
-        run: echo "Deploy ejecutado"
+        run: echo $TOKEN
         env:
           TOKEN: ${{ secrets.DEMO_SECRET }}
