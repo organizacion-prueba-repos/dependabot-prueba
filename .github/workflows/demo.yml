@@ -1,16 +1,19 @@
-name: Demo Permissions
+name: Demo Outputs
 
 on: [push]
 
-permissions:
-  contents: read
-
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      mensaje: ${{ steps.set-output.outputs.mensaje }}
+
+    steps:
+      - id: set-output
+        run: echo "mensaje=Hola desde build" >> $GITHUB_OUTPUT
+
   test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          git config --global user.name "demo"
-          git config --global user.email "demo@test.com"
-          git commit --allow-empty -m "test"
-          git push
+      - run: echo "${{ needs.build.outputs.mensaje }}"
