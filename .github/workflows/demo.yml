@@ -1,12 +1,16 @@
-name: Demo Secrets
+name: Demo Permissions
 
 on: [push]
 
+permissions:
+  contents: read
+
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Usar secret
-        run: echo $TOKEN
-        env:
-          TOKEN: ${{ secrets.DEMO_SECRET }}
+      - run: |
+          git config --global user.name "demo"
+          git config --global user.email "demo@test.com"
+          git commit --allow-empty -m "test"
+          git push
