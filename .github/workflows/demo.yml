@@ -6,17 +6,12 @@ on:
   pull_request:
 
 jobs:
-  checkout-advanced:
+  git-history:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Repo actual
-        uses: actions/checkout@v4
-
-      - name: Otro repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          repository: actions/checkout
-          path: RepositorioPrueba
+          fetch-depth: 0
 
-      - run: ls
+      - run: git log --oneline
