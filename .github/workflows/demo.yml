@@ -6,9 +6,17 @@ on:
   pull_request:
 
 jobs:
-  timeout-demo:
+  checkout-advanced:
     runs-on: ubuntu-latest
-    timeout-minutes: 1
 
     steps:
-      - run: sleep 120
+      - name: Repo actual
+        uses: actions/checkout@v4
+
+      - name: Otro repo
+        uses: actions/checkout@v4
+        with:
+          repository: actions/checkout
+          path: organizacion-prueba-repos/dependabot-demo
+
+      - run: ls
