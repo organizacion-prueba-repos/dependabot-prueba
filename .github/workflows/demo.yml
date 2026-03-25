@@ -1,30 +1,17 @@
-name: Demo Completo
+name: Artifact Demo
 
-on: [push]
-
-permissions:
-  contents: read
+on: push
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.version.outputs.version }}
-    steps:
-      - id: version
-        run: echo "version=1.0.${{ github.run_number }}" >> $GITHUB_OUTPUT
 
-  test:
-    needs: build
-    runs-on: ubuntu-latest
     steps:
-      - run: echo "Testing version ${{ needs.build.outputs.version }}"
+      - name: Crear archivo
+        run: echo "Hola desde GitHub Actions" > saludo.txt
 
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy seguro
-        run: echo "Deploy con secret"
-        env:
-          TOKEN: ${{ secrets.DEMO_SECRET }}
+      - name: Subir artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mi-archivo
+          path: saludo.txt
