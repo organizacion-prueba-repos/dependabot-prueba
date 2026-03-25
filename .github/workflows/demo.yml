@@ -6,18 +6,11 @@ on:
   pull_request:
 
 jobs:
-  env-demo:
+  context-demo:
     runs-on: ubuntu-latest
 
-    env:
-      APP_NAME: mi-app
-
     steps:
-      - name: Usar variable global
-        run: |
-          echo "App: $APP_NAME"
-
-      - name: Variable por step
-        run: echo "Hola $NAME"
-        env:
-          NAME: Tatiana
+      - run: echo "Usuario: ${{ github.actor }}"
+      - run: echo "Repo: ${{ github.repository }}"
+      - run: echo "Rama: ${{ github.ref }}"
+      - run: echo "Run number: ${{ github.run_number }}"
