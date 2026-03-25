@@ -1,17 +1,14 @@
-name: Artifact Demo
+name: Demo GitHub Actions
 
-on: push
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
 
 jobs:
-  build:
+  demo:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Crear archivo
-        run: echo "Hola desde GitHub Actions" > saludo.txt
-
-      - name: Subir artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: mi-archivo
-          path: saludo.txt
+      - name: Hola mundo
+        run: echo "Hola mundo"
