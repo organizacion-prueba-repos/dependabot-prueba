@@ -6,16 +6,13 @@ on:
   pull_request:
 
 jobs:
-  cache-demo:
+  error-demo:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Falla pero sigue
+        run: exit 1
+        continue-on-error: true
 
-      - name: Cache npm
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-
-      - run: npm install
+      - name: Sigue ejecutando
+        run: echo "El pipeline sigue en pie"
