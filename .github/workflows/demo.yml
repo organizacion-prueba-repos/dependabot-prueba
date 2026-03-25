@@ -6,15 +6,17 @@ on:
   pull_request:
 
 jobs:
-  checkout-demo:
+  env-demo:
     runs-on: ubuntu-latest
 
+    env:
+      APP_NAME: mi-app
+
     steps:
-      - name: Sin checkout
-        run: ls
+      - name: Usar variable global
+        run: echo "App: $APP_NAME"
 
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Con checkout
-        run: ls
+      - name: Variable por step
+        run: echo "Hola $NAME"
+        env:
+          NAME: Tatiana
