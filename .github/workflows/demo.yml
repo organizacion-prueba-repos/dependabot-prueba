@@ -6,14 +6,14 @@ on:
   pull_request:
 
 jobs:
-  matrix-demo:
-    runs-on: ubuntu-latest
+  matrix-combo:
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node: [16, 18, 20]
+        os: [ubuntu-latest, windows-latest]
+        node: [16, 18]
 
     steps:
-      - name: Mostrar versión
-        run: |
-          echo "Node version: ${{ matrix.node }}"
+      - run: |
+          echo "OS: ${{ matrix.os }} - Node: ${{ matrix.node }}"
