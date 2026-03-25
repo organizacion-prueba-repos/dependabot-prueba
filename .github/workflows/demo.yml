@@ -6,13 +6,22 @@ on:
   pull_request:
 
 jobs:
-  matrix-combo:
+  matrix-control:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
         node: [16, 18]
+
+        exclude:
+          - os: windows-latest
+            node: 16
+
+        include:
+          - os: ubuntu-latest
+            node: 20
+            experimental: true
 
     steps:
       - run: |
