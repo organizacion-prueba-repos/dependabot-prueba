@@ -10,7 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "Usuario: ${{ github.actor }}"
-      - run: echo "Repo: ${{ github.repository }}"
-      - run: echo "Rama: ${{ github.ref }}"
-      - run: echo "Run number: ${{ github.run_number }}"
+      - run: |
+          echo "Usuario: ${{ github.actor }}"
+      - run: |
+          echo "Repo: ${{ github.repository }}"
+      - run: |
+          echo "Rama: ${{ github.ref }}"
+      - run: |
+          echo "Run number: ${{ github.run_number }}"
