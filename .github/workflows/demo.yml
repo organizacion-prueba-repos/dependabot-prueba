@@ -14,8 +14,8 @@ jobs:
 
     steps:
       - name: Usar variable global
-        run: | 
-          	echo "App: $APP_NAME"
+        run: |
+          echo "App: $APP_NAME"
 
       - name: Variable por step
         run: echo "Hola $NAME"
