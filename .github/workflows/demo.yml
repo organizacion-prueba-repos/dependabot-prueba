@@ -6,9 +6,15 @@ on:
   pull_request:
 
 jobs:
-  demo:
+  checkout-demo:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Hola mundo
-        run: echo "Hola mundo"
+      - name: Sin checkout
+        run: ls
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Con checkout
+        run: ls
